@@ -60,10 +60,11 @@ class AnomalyDetector:
         
         # Evaluate on full dataset if labels available
         if 'is_anomaly' in df.columns:
-            predictions, scores = self.predict(df)
+            predictions, scores, raw_predictions = self.predict(df)  # FIX: Unpack 3 values!
             self.evaluate(df['is_anomaly'].values, predictions)
         
         return self
+
     
     def predict(self, df):
         """Predict anomalies"""
